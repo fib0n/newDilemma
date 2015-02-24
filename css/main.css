@@ -1,0 +1,39 @@
+#layout {
+    margin: 0 auto;
+    width: 1024px;
+    clear: both;
+    min-height: 100%;
+}
+.content{
+    margin-bottom: 100px;
+}
+ul {
+    list-style-type: none;
+}
+li {
+    margin-bottom: 5px;
+}
+.charts div {
+    min-height: 300px;
+}
+.bold {
+    font-weight: bold;
+}
+.small {
+    font-size: 80%;
+    color: gray;
+}
+button{
+    border-radius: 5px;
+    background-color: #d3d3d3;
+}
+.status{
+    font-size: 70%;
+    margin-top: 10px;
+}
+.success{
+    color: green;
+}
+.error{
+    color: red;
+}

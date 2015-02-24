@@ -8,4 +8,3 @@ deploy:
     secure: f8+7MUd2+k5cKn7wB/26uDcie9aMQJwlHUlSkIW3p6tcYOZ9yg+EHaBvhD/vEIJANKgZRKuLsTZcDvHCZ59n8tF4pOS97+XJ1Tue3EcsfyClercjz2EvRXcdx9hJ0qlNrsHpUAsMW7cwIT4AGE4yUbI2wHwJsO79ma8wX7V7qTk=
   on:
     repo: fib0n/newDilemma
-    branch: master

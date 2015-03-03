@@ -1,0 +1,25 @@
+{
+  "name": "new_prisoner_dilemma",
+  "description": "The iterated prisoners' dilemma",
+  "main": "js/strategy.js",
+  "version": "0.0.5",
+  "engines": {
+    "node": "stable"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fib0n/newDilemma.git"
+  },
+  "devDependencies": {
+    "karma": "~0.10.2",
+    "karma-coverage": "~0.1.0",
+    "karma-html-reporter": "~0.1",
+    "karma-sinon": "~1.0.4",
+    "sinon": "~1.12.2",
+    "minify": "^1.4.8"
+  },
+  "scripts": {
+    "build": "minify css/main.css > css/all.min.css && cd js && minify strategy.js game.js main.js > all.min.js",
+    "test": "karma start karma.conf.js && npm run build"
+  }
+}

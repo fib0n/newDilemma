@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Agile-моделирование</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.2/normalize.min.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <!--    Для графиков-->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+    <script src="http://cdn.oesmith.co.uk/morris-0.4.1.min.js"></script>
+    <script>
+        window.app = {};
+    </script>
+</head>
+
+<body>
+    <div id="layout">
+        <div id="main">
+            <div class="header">
+                <h1>Моделирование поведения команды игроками с разными стратегиями</h1>
+            </div>
+            <div class="content">
+                <div class="strategy-description">
+                    <h2>Перечень стратегий</h2>
+                    <ol>
+                        <li>
+                            <span class="bold">AllC (Always cooperate)</span> - Всегда сотрудничает
+                        </li>
+                        <li>
+                            <span class="bold">AllD (Always defect)</span> - Всегда предает
+                        </li>
+                        <li>
+                            <span class="bold">Rand (Random)</span> - Случайный выбор хода
+                        </li>
+                        <li>
+                            <span class="bold">Grim</span> - Сотрудничает пока не предаст оппонент, далее всегда предает
+                        </li>
+                        <li>
+                            <span class="bold">Neg (Negation)</span> - Первый ход случайный, далее ходит противоположно сопернику
+                        </li>
+                        <li>
+                            <span class="bold">TFT (Tit-for-Tat)</span> - Око за око, сотрудничает на первой ходе, далее делает то же самое, что делал оппонент на предыдущем шаге
+                        </li>
+                        <li>
+                            <span class="bold">STFT (Suscpicious Tit-for-Tat)</span> - То же самое, что TFT, только начинает с предательства
+                        </li>
+                        <li>
+                            <span class="bold">TFTT (Tit-for-Two-Tats)</span> - Предает только в случае 2-х предыдущих подряд ходов оппонента
+                        </li>
+                        <li>
+                            <span class="bold">Pavlov</span> - "Если мой предыдущий ход был успешным, то повторяю его, иначе делаю противоположный ход"
+                        </li>
+                                                <li>
+                            <span class="bold">CD</span> - периодично повторяет поледовательность ходов cdcdcd...
+                        </li>
+                                                <li>
+                            <span class="bold">SoftMajo</span> - Повторяет тот ход, который чаще всего ходил оппонент за всю игру
+                        </li>
+
+                    </ol>
+                </div>
+                <div class="charts">
+                    <h2>Графики</h2>
+                    <p class="small">В каждой строке фиксированная стратегия играет со всеми остальными (столбцы диаграммы: набранные очки фиксированной стратегии, очки оппонента и суммарное кол-во очков)</p>
+                    <ol>
+                        <li>
+                            <h3>Always cooperate</h3>
+                        </li>
+                        <li>
+                            <h3>Always defect</h3>
+                        </li>
+                        <li>
+                            <h3>Random</h3>
+                        </li>
+                        <li>
+                            <h3>Grim</h3>
+                        </li>
+                        <li>
+                            <h3>Negation</h3>
+                        </li>
+                        <li>
+                            <h3>Tit-for-Tat</h3>
+                        </li>
+                        <li>
+                            <h3>Suscpicious Tit-for-Tat</h3>
+                        </li>
+                        <li>
+                            <h3>Tit-for-Two-Tats</h3>
+                        </li>
+                        <li>
+                            <h3>Pavlov</h3>
+                        </li>
+                        <li>
+                            <h3>CD</h3>
+                        </li>
+                        <li>
+                            <h3>Soft Majo</h3>
+                        </li>
+                    </ol>
+                </div>
+                <div class="equilibrium">
+                    <div class="nash">
+                        <h2>Стратегии, удовлетворяющие равновесию Нэша (то есть игроку, не выгодно менять стратегию, если его оппонент ее не меняет)</h2>
+                    </div>
+                    <div class="pareto">
+                        <h2>Равновесные точки с максимальным суммарным кол-вом очков</h2>
+                    </div>
+                </div>
+                <div class="customizing">
+                    <h2>Задание параметров модели</h2>
+                    <input id="gamesCount" type="number" min="1" value="10" title="Введите количество игр" />
+                    <input id="roundsCount" type="number" min="2" value="100" title="Введите количество раундов в игре" />
+                    <button id="restart">Пересчитать</button>
+                    <span class="small">*больше параметров можно изменить в скриптах</span>
+                </div>
+                <div class="conclusion">
+                    <h2>Вывод</h2>
+                    <p>В модели, где каждая из 9 стратегий играет с другой по 10 раз, с количеством раундов 100 раз наиболее оптимальными показали себя <span class="bold">Grim</span> и <span class="bold">Tit-for-Tat</span>, они являются равновесными по Нэшу, а суммарный балл игроков максимальный.</p>
+                    <p>Для того чтобы исключить из равновесных точек, случай когда обе стратегии предают друг друга, вмешаемся в систему извне: если игрок предает <i>n</i> подряд предыдущих раундов, то с вероятностью <i>p</i> штрафуем его на <i>coeff * (сумма заработанных им очков за n ходов)</i>. При параметрах <i>n = 5, p = 0.3, coeff = 0.2</i> (штрафуем на среднее за ход число заработанных очков после 5 предательских ходов) видно, что нежелательные точки равновесия исключены, а вместо нее появилась <span class="bold">Pavlov-Pavlov</span> с суммой очков близкой к максимальному.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/all.min.js"></script>
+</body>
+
+</html>

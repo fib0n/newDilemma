@@ -142,10 +142,10 @@ var start = function (gamesCount, roundsCount) {
         console.table(tableResult);
 
     var optimalResults = getOptimalResults(matrixResult);
-    renderOptimalResults(optimalResults, '.nash');
+    renderOptimalResults(optimalResults, '#nash');
     console.log(optimalResults);
     var maxOptimalResult = getMaxOptimalResults(optimalResults);
-    renderOptimalResults(maxOptimalResult, '.pareto');
+    renderOptimalResults(maxOptimalResult, '#pareto');
     console.log(maxOptimalResult);
 }
 
@@ -153,7 +153,7 @@ $(function () {
     start($('#gamesCount').val(), $('#roundsCount').val());
     var resetUI = function () {
         $('.chart').remove();
-        $('.equilibrium li').remove();
+        $('#equilibrium li').remove();
     }
     $('#restart').click(function () {
         var gamesCount = $('#gamesCount').val() >> 0,
@@ -162,7 +162,13 @@ $(function () {
 
         //primitive validation
         $parent.find('.status').remove();
-        if (Number.isInteger(gamesCount) && Number.isInteger(roundsCount) && gamesCount > 0 && roundsCount > 1) {
+        if (Number.isInteger(gamesCount) 
+            && Number.isInteger(roundsCount) 
+            && gamesCount > 0
+            && gamesCount < 1000
+            && roundsCount > 1
+            && roundsCount < 10000
+           ) {
             resetUI();
             start(gamesCount, roundsCount);
             $('html, body').animate({

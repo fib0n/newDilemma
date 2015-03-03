@@ -45,7 +45,10 @@ window.app = window.app || {};
     };
 
     app.TFTT = function TFTT(opponentHistory) {
-        return opponentHistory.length > 1 && opponentHistory[opponentHistory.length - 1].move === DEFECT && opponentHistory[opponentHistory.length - 2].move === DEFECT ? DEFECT : COOPERATE;
+        return opponentHistory.length > 1
+            && opponentHistory[opponentHistory.length - 1].move === DEFECT
+            && opponentHistory[opponentHistory.length - 2].move === DEFECT
+            ? DEFECT : COOPERATE;
     };
 
     app.Pavlov = function Pavlov(opponentHistory, ownHistory) {

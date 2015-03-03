@@ -16,4 +16,4 @@ npm test
 
 Тестирование и анализ покрытия проводился для файла [strategy.js](https://github.com/fib0n/newDilemma/blob/dev/js/strategy.js). Сгенерированные отчеты о результатах теста лежат в папке /js/test_results/.../index.html). Сгенерированный отчет о покрытии кода в /js/coverage/.../index.html).
 
-В качестве CI используется [Travis](https://travis-ci.org/), сборка деплоится [npm](https://www.npmjs.com/package/new_prisoner_dilemma)
+В качестве CI используется [Travis](https://travis-ci.org/fib0n/newDilemma/builds), сборка деплоится [npm](https://www.npmjs.com/package/new_prisoner_dilemma)

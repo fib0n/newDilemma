@@ -5,6 +5,6 @@ deploy:
   provider: npm
   email: ya.fib1@yandex.ru
   api_key:
-    secure: f8+7MUd2+k5cKn7wB/26uDcie9aMQJwlHUlSkIW3p6tcYOZ9yg+EHaBvhD/vEIJANKgZRKuLsTZcDvHCZ59n8tF4pOS97+XJ1Tue3EcsfyClercjz2EvRXcdx9hJ0qlNrsHpUAsMW7cwIT4AGE4yUbI2wHwJsO79ma8wX7V7qTk=
+    secure: SIH5xe4twNeCfZqEOtj6gisB1IWM8k+ZZkOQ/CZil7Yd9KhyPrMSqhlZepZ7kDjabYZHPKWoon95Hi112C2ZP3ghcEXIgIMQmgTIoUpsC9zie6ezIEdxDCaCruX5j52qgygMYCTP37zs2gy/2YB0nV8Vs+59RjTVTz+6ABZ8iv4=
   on:
     repo: fib0n/newDilemma
